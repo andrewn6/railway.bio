@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta title="author" content="">
+    <meta title="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="blur"></div>
+    <main>
+        <div class="flex">
+            <h1>railway.wtf</h1>
+            <select id="stationSelect"></select>
+        </div>
+        <div id="departures"></div>
+    </main>
+    <template id="departure-template">
+        <style>
+            * {
+                margin: 0;
+            }
+
+            h2 {
+                opacity: 0.8;
+                font-weight: 600;
+            }
+
+            h3 {
+                font-weight: 500;
+                opacity: 0.7;
+                font-size: 24px;
+                margin: 0 4px;
+            }
+
+            .platforms {
+                min-width: 50px;
+                text-align: center;
+            }
+
+            p {
+                opacity: 0.5;
+                font-weight: 300;
+            }
+
+            .left,
+            .right {
+                display: flex;
+                align-items: center;
+            }
+
+        </style>
+        <div class="left">
+            <h2 class="service">
+                <slot name="location"></slot>
+            </h2>
+        </div>
+        <div class="right">
+            <h3 class="scheduled">
+                <slot name="scheduled"></slot>
+            </h3>
+            <p>on platform</p>
+            <h3 class="platforms">
+                <slot name="platforms"></slot>
+            </h3>
+        </div>
+    </template>
+    <script src="js/index.js"></script>
+</body>
+
+</html>
