@@ -1,11 +1,11 @@
-import Koa from 'koa';
+import Koa, { Context } from 'koa';
 import Router from 'koa-router';
 import fetch from 'node-fetch';
 
 const app = new Koa();
 const router = new Router();
 
-router.get('/', (ctx) => {
+router.get('/', async (ctx: Context) => {
   ctx.body = 'Hello Koa';
 });
 
@@ -15,7 +15,7 @@ const getDepartures = async (stationCode: string) => {
   return departures;
 };
 
-router.get('/departures', async (ctx) => {
+router.get('/departures', async (ctx: Context) => {
   const stationCode = ctx.query.station as string;
   const departures = await getDepartures(stationCode);
   ctx.body = departures;
