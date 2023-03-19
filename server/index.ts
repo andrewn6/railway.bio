@@ -9,7 +9,7 @@ router.get('/', async (ctx: Context) => {
 });
 
 const getDepartures = async (stationCode: string) => {
-  const res = await fetch(`https://api.gotransit.com/Api/schedules/stops/UN/departures?Page=1&PageLimit=10`);
+  const res = await fetch(`https://api.gotransit.com/Api/schedules/stops/${stationCode}/departures?Page=1&PageLimit=10`);
   const departures = await res.json();
   return departures;
 };
