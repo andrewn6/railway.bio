@@ -70,6 +70,28 @@
         </div>
     </template>
     <script src="js/index.js"></script>
+    <script>
+        // Make an AJAX request to the API to fetch departures
+        fetch("https://api.railway.wtf/departures?stationCode=UN")
+            .then(response => response.json())
+            .then(data => {
+                // Get the "departures" div from the HTML
+                const departuresDiv = document.getElementById("departures");
+
+                // Loop through each departure in the data and create a new "departure" element
+                data.allDepartures.items.forEach(departure => {
+                    // Clone the template and fill in the data
+                    const template = document.getElementById("departure-template").content.cloneNode(true);
+                    template.querySelector(".service").textContent = departure.service;
+                    template.querySelector(".scheduled").textContent = departure.scheduledTime;
+                    template.querySelector(".platforms").textContent = departure.platform;
+
+                    // Append the new "departure" element to the "departures" div
+                    departuresDiv.appendChild(template);
+                });
+            })
+            .catch(error => console.error(error));
+    </script>
 </body>
 
 </html>

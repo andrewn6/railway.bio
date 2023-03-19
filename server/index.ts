@@ -5,7 +5,7 @@ const app = new Koa();
 const router = new Router();
 
 router.get('/', async (ctx: Context) => {
-  ctx.body = 'Hello Koa';
+  ctx.body = 'gm, welcome to the railway.wtf API';
 });
 
 const getDepartures = async (stationCode: string) => {
