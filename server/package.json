@@ -1,22 +1,26 @@
 {
-    "name": "server",
-    "module": "src/index.ts",
-    "scripts": {
-        "build": "tsc --build",
-        "test": "jest",
-        "start": "node ./dist/index.js",
-        "dev": "nodemon index.ts"
-    },
-    "devDependencies": {
-        "bun-types": "^0.5.0",
-        "typescript": "^5.0.2"
-    },
-    "dependencies": {
-        "@types/node": "^18.15.3",
-        "koa": "^2.14.1",
-        "koa-router": "^12.0.0",
-        "node-fetch": "^3.3.1",
-        "ts-node-dev": "^2.0.0",
-        "tslib": "^2.5.0"
-    }
+  "name": "server",
+  "module": "src/index.ts",
+  "scripts": {
+    "build": "tsc --build",
+    "test": "jest",
+    "start": "node ./dist/index.js",
+    "dev": "nodemon --exec bun index.ts"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.13.5",
+    "@types/koa-bodyparser": "^4.3.10",
+    "@types/koa-router": "^7.4.4",
+    "bun-types": "^0.5.0",
+    "typescript": "^5.0.2"
+  },
+  "dependencies": {
+    "@koa/cors": "^4.0.0",
+    "@types/node": "^18.15.3",
+    "koa": "^2.14.1",
+    "koa-router": "^12.0.0",
+    "node-fetch": "^3.3.1",
+    "ts-node-dev": "^2.0.0",
+    "tslib": "^2.5.0"
+  }
 }
