@@ -5,8 +5,9 @@
         "sourceMap": false,
         "esModuleInterop": true,
         "declaration": true,
-        "outDir": "dist",
+        "outDir": "./dist",
         "noImplicitAny": false,
+        "allowJs": true,
         "strict": true,
         "importHelpers": true
     },
