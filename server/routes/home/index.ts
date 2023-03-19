@@ -7,7 +7,6 @@ export default async (ctx: Context) => {
     let html = await fs.readFile(path.join(__dirname, "/home.html"), {
       encoding: "utf-8",
     });
-    console.log(html)
     return html;
   } catch (e) {
     console.error(e);
