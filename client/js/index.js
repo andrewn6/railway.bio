@@ -139,7 +139,7 @@ function renderDepartures(departures) {
 }
 
 async function fetchDepartures(stationCode) {
-  const apiUrl = `https://nationalrail.co.uk/service/ldb/liveTrainsJson?departing=true&liveDepartureBoard.rows=10&liveDepartureBoard.station=${stationCode}`;
+  const apiUrl = `https://api.railway.wtf/departures`;
   const response = await fetch(apiUrl);
   const data = await response.json();
   const departures = data.trainServices.map((service) => ({
