@@ -22,6 +22,19 @@ main {
   min-width: 400px;
   margin: 90px auto;
   border-radius: 30px;
+
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.5s;
+}
+
+main.loading {
+  grid-template-rows: 1fr;
+}
+
+.departure-wrapper {
+  min-height: 0;
+  overflow: hidden;
 }
 
 .blur {
@@ -74,4 +87,9 @@ train-departure {
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 20px;
   padding: 20px;
+  animation: load 0.4s;
+}
+
+@keyframes load {
+  from {translate: 0 3px;opacity:0;}
 }

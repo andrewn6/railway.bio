@@ -46,17 +46,21 @@ customElements.define(
 
 async function loadStation(code) {
   const container = $("#departures");
-  container.classList.add("loading");
+  $("main").classList.add("loading");
   const departures = await fetchTrainDepartures(code)
   
   container.innerHTML = "";
 
-  for (const dep of departures) {
+  for (const [i, dep] of departures.entries()) {
     const depel = document.createElement("train-departure");
     depel.innerHTML = `<span slot="location">${dep.service}</span><span slot="scheduled">${dep.scheduledTime}</span><span slot="platforms">${dep.platform}</span>`;
-    $("#departures").append(depel);
+    setTimeout(()=>{
+      $("#departures").append(depel);
+    }, 100*i)
   }
 
   if (!departures.length) container.innerHTML = "No departures for this station"
-  container.classList.remove("loading")
+  setTimeout(()=>{
+    $("main").classList.remove("loading")
+  }, 1000)
 }
