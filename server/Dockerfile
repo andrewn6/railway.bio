@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM oven/bun
 
 WORKDIR /app
 
@@ -6,10 +6,8 @@ COPY package*.json ./
 
 COPY . .
 
-RUN npm install
-
-RUN npm run build
+RUN bun i
 
 EXPOSE 8080
 
-CMD ["npm", "run", "start"]
+CMD ["bun", "run", "dev"]
