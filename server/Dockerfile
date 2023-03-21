@@ -1,19 +1,17 @@
-FROM jarredsumner/bun:edge AS base
+FROM node:18-alpine
 
 WORKDIR /app
 
-FROM base AS builder
+RUN npm install -g pnpm
 
 COPY package*.json ./
+
 COPY . .
 
-RUN bun install
+RUN pnpm install
 
-FROM base AS release
-
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app ./
+RUN pnpm run build
 
 EXPOSE 8080
 
-CMD ["bun", "run", "dev"]
+CMD ["pnpm", "run", "start"]

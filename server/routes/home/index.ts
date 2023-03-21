@@ -4,7 +4,7 @@ import path from "path";
 
 export default async (ctx: Context) => {
   try {
-    let html = await fs.readFile(path.join(__dirname, "/home.html"), {
+    let html = await fs.readFile(path.join(process.cwd(), "./routes/home/home.html"), {
       encoding: "utf-8",
     });
     return html;

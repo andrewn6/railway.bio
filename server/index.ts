@@ -22,6 +22,6 @@ router.get("/departures/:station", async (ctx: Context) => {
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-app.listen(8000, () => {
-  console.log("Server listening on port 8000");
+app.listen(8080, () => {
+  console.log("Server listening on port 8080");
 });
