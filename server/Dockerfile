@@ -12,6 +12,6 @@ RUN pnpm install
 
 RUN pnpm run build
 
-EXPOSE 8080
+EXPOSE 8000
 
 CMD ["pnpm", "run", "start"]
