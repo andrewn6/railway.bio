@@ -4,7 +4,7 @@ const $ = document.querySelector.bind(document);
 
 const fetchTrainDepartures = async station => {
   try {
-    const response = await fetch(`http://localhost:8080/departures/${station}`);
+    const response = await fetch(`https://api.railway.wtf/departures/${station}`);
     const data = await response.json();
     return data.trainDepartures.items;
   } catch (error) {
@@ -30,7 +30,7 @@ select.oninput = async (e) => {
   await loadStation(e.target.value);
 };
 
-//loadStation("UN");
+loadStation("UN");
 
 customElements.define(
   "train-departure",
