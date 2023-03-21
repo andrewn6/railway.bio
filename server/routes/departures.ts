@@ -1,4 +1,5 @@
 import { Context } from "koa";
+import axios from "axios";
 
 export default async (ctx: Context) => {
   const stationCode = (ctx.params.station || "UN") as string;
@@ -7,9 +8,8 @@ export default async (ctx: Context) => {
 };
 
 async function getDepartures(stationCode: string) {
-  const res = await fetch(
+  const res = await axios.get(
     `https://api.gotransit.com/Api/schedules/stops/${stationCode}/departures?Page=1&PageLimit=10`
   );
-  const departures = await res.json();
-  return departures;
+  return res.data;
 }

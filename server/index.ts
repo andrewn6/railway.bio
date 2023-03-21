@@ -12,15 +12,23 @@ app.use(async (ctx, next) => {
   await next();
 });
 
+
 router.get("/", async (ctx: Context) => {
   ctx.body = await routes.home(ctx);
+  ctx.response.status = 200;
 });
 router.get("/departures/:station", async (ctx: Context) => {
   ctx.body = await routes.departures(ctx);
 });
 
+app.use(async (ctx, next) => {
+  console.log(`${ctx.request.method} \x1b[36m${ctx.request.url}\x1b[0m`);
+  await next()
+})
+
 app.use(router.routes());
 app.use(router.allowedMethods());
+
 
 app.listen(8080, () => {
   console.log("Server listening on port 8080");
