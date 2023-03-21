@@ -9,6 +9,7 @@ body {
   height: 100svh;
   width: 100svw;
   background: #0c0c20;
+  cursor: none;
 }
 
 main {
