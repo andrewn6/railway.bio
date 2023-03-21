@@ -2,7 +2,7 @@
   "name": "server",
   "module": "src/index.ts",
   "scripts": {
-    "build": "tsc --build && cp ./server/routes/home/home.html ./server/dist/routes/home/home.html",
+    "build": "tsc --build && cp ./routes/home/home.html ./dist/routes/home/home.html",
     "test": "jest",
     "start": "node ./dist/index.js",
     "dev": "nodemon --exec bun index.ts"
