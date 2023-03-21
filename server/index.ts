@@ -18,7 +18,15 @@ router.get("/", async (ctx: Context) => {
   ctx.response.status = 200;
 });
 router.get("/departures/:station", async (ctx: Context) => {
-  ctx.body = await routes.departures(ctx);
+  let departures = await routes.departures(ctx);
+  if (departures.error) {
+    ctx.status = departures.error;
+    ctx.body = departures.message;
+  } else ctx.body = departures;
+});
+
+router.get("/stations", async (ctx: Context) => {
+  ctx.body = await routes.stations(ctx);
 });
 
 app.use(async (ctx, next) => {
@@ -28,7 +36,6 @@ app.use(async (ctx, next) => {
 
 app.use(router.routes());
 app.use(router.allowedMethods());
-
 
 app.listen(8080, () => {
   console.log("Server listening on port 8080");

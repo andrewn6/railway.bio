@@ -13,10 +13,12 @@
 
   foot {
     float: right;
-    margin-top: 50px;
-    margin-bottom: 20px;
     font-style: italic;
     display: block;
+    opacity: 0.5;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
     text-align: right;
   }
 
@@ -28,7 +30,7 @@
     color: deepskyblue;
   }
   c2 {
-    color: rgb(182, 237, 255);
+    color:coral;
   }
 
   d,
@@ -45,45 +47,15 @@
 
 <b>railway.wtf API</b>
 <br />
-<c>/departures/:station </c>
-<d>fetch all departures for a given station</d>
+<c>GET</c> /departures/:station
 <ind>
-  <!-- Generated from client/js/stations.js -->
-  <c2>Union</c2><br />UN <d>(Union Station)</d> <br /><br /><c2
-    >Union Pearson</c2
-  ><br />PE <d>(Pearson Airport)</d> <br /><br /><c2>Lakeshore East</c2><br />WH
-  <d>(Whitby)</d> <br />AJ <d>(Ajax)</d> <br />PI <d>(Pickering)</d> <br />RO
-  <d>(Rouge Hill)</d> <br />GU <d>(Guildwood)</d> <br />EG <d>(Eglinton)</d>
-  <br />SC <d>(Scarborough)</d> <br />DA <d>(Danforth)</d> <br /><br /><c2
-    >Stouffville</c2
-  ><br />LI <d>(Old Elm)</d> <br />ST <d>(Stouffville)</d> <br />MJ
-  <d>(Mount Joy)</d> <br />MR <d>(Markham)</d> <br />CE <d>(Centennial)</d>
-  <br />UI <d>(Unionville)</d> <br />MK <d>(Milliken)</d> <br />AG
-  <d>(Agincourt)</d> <br />KE <d>(Kennedy)</d> <br /><br /><c2>Richmond Hill</c2
-  ><br />BM <d>(Bloomington)</d> <br />GO <d>(Gormley)</d> <br />RI
-  <d>(Richmond Hill)</d> <br />LA <d>(Langstaff)</d> <br />OL
-  <d>(Old Cummer)</d> <br />OR <d>(Oriole)</d> <br /><br /><c2>Barrie</c2
-  ><br />AD <d>(Allendale Waterfront)</d> <br />BA <d>(Barrie South)</d>
-  <br />BD <d>(Bradford)</d> <br />EA <d>(East Gwillimbury)</d> <br />NE
-  <d>(Newmarket)</d> <br />AU <d>(Aurora)</d> <br />KC <d>(King City)</d>
-  <br />MP <d>(Maple)</d> <br />RU <d>(Rutherford)</d> <br />DO
-  <d>(Downsview Park)</d> <br /><br /><c2>Lakeshore West</c2><br />EX
-  <d>(Exhibition)</d> <br />MI <d>(Mimico)</d> <br />LO <d>(Long Branch)</d>
-  <br />PO <d>(Port Credit)</d> <br />CL <d>(Clarkson)</d> <br />OA
-  <d>(Oakville)</d> <br />BO <d>(Bronte)</d> <br />AP <d>(Appleby)</d> <br />BU
-  <d>(Burlington)</d> <br />AL <d>(Aldershot)</d> <br />HA <d>(Hamilton)</d>
-  <br />WR <d>(West Harbour)</d> <br />SCTH <d>(St. Catharines)</d> <br />NI
-  <d>(Niagara Falls)</d> <br /><br /><c2>Milton</c2><br />KP <d>(Kipling)</d>
-  <br />DI <d>(Dixie)</d> <br />CO <d>(Cooksville)</d> <br />ER
-  <d>(Erindale)</d> <br />SR <d>(Streetsville)</d> <br />ME <d>(Meadowvale)</d>
-  <br />LS <d>(Lisgar)</d> <br />ML <d>(Milton)</d> <br /><br /><c2
-    >Kitchener</c2
-  ><br />BL <d>(Bloor)</d> <br />WE <d>(Weston)</d> <br />ET
-  <d>(Etobicoke North)</d> <br />MA <d>(Malton)</d> <br />BE <d>(Bramalea)</d>
-  <br />BR <d>(Brampton)</d> <br />MO <d>(Mount Pleasant)</d> <br />GE
-  <d>(Georgetown)</d> <br />AC <d>(Acton)</d> <br />GL <d>(Guelph Central)</d>
-  <br />KI <d>(Kitchener)</d> <br />
+  <d>fetch all departures for a given station ID</d>
+</ind>
+<c>GET</c> /stations
+<ind>
+  <d>get a list of all stations and their IDs, grouped by service
 </ind>
 <foot>
-  <d>enjoy :3</d>
+  enjoy :3<br>
+  <d>railway.wtf</d>
 </foot>

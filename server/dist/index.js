@@ -16,7 +16,16 @@ router.get("/", (ctx) => tslib_1.__awaiter(void 0, void 0, void 0, function* () 
     ctx.response.status = 200;
 }));
 router.get("/departures/:station", (ctx) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
-    ctx.body = yield routes_1.default.departures(ctx);
+    let departures = yield routes_1.default.departures(ctx);
+    if (departures.error) {
+        ctx.status = departures.error;
+        ctx.body = departures.message;
+    }
+    else
+        ctx.body = departures;
+}));
+router.get("/stations", (ctx) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
+    ctx.body = yield routes_1.default.stations(ctx);
 }));
 app.use((ctx, next) => tslib_1.__awaiter(void 0, void 0, void 0, function* () {
     console.log(`${ctx.request.method} \x1b[36m${ctx.request.url}\x1b[0m`);
