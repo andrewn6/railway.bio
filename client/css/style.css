@@ -9,7 +9,6 @@ body {
   height: 100svh;
   width: 100svw;
   background: #0c0c20;
-  cursor: none;
 }
 
 main {
@@ -19,6 +18,7 @@ main {
   backdrop-filter: blur(100px);
   /* Note: backdrop-filter has minimal browser support */
   padding: 30px;
+  cursor: none;
   max-width: 800px;
   min-width: 400px;
   margin: 90px auto;
