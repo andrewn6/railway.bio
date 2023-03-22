@@ -2,14 +2,28 @@ import stations from "./stations.js";
 
 const $ = document.querySelector.bind(document);
 
-const fetchTrainDepartures = async station => {
+const fetchTrainDepartures = async (station) => {
   try {
-    const response = await fetch(`https://api.railway.wtf/departures/${station}`);
+    const response = await fetch(
+      `https://api.railway.wtf/departures/${station}`
+    );
     const data = await response.json();
     return data.trainDepartures.items;
   } catch (error) {
     console.error(error);
   }
+};
+const createElement = (tag, attrs, value) => {
+  // shorthand element function
+  let el = document.createElement(tag);
+  if (attrs)
+    attrs.split(";").forEach((attr) => {
+      if (!attr) return;
+      let vals = attr.split("=");
+      el.setAttribute(vals[0].trim(), vals[1].trim());
+    });
+  el.innerHTML = value || "";
+  return el;
 };
 
 // Populate select
@@ -32,35 +46,41 @@ select.oninput = async (e) => {
 
 loadStation("UN");
 
-customElements.define(
-  "train-departure",
-  class extends HTMLElement {
-    constructor() {
-      super();
-      const template = $("#departure-template").content;
-      const shadowRoot = this.attachShadow({ mode: "open" });
-      shadowRoot.appendChild(template.cloneNode(true));
-    }
-  }
-);
-
 async function loadStation(code) {
   const container = $("#departures");
   $("main").classList.add("loading");
-  const departures = await fetchTrainDepartures(code)
-  
+  const departures = await fetchTrainDepartures(code);
+
   container.innerHTML = "";
 
   for (const [i, dep] of departures.entries()) {
-    const depel = document.createElement("train-departure");
-    depel.innerHTML = `<span slot="location">${dep.service}</span><span slot="scheduled">${dep.scheduledTime}</span><span slot="platforms">${dep.platform}</span>`;
-    setTimeout(()=>{
+    let depel = generateDeparture(dep);
+    setTimeout(() => {
       $("#departures").append(depel);
-    }, 100*i)
+    }, 100 * i);
   }
 
-  if (!departures.length) container.innerHTML = "No departures for this station"
-  setTimeout(()=>{
-    $("main").classList.remove("loading")
-  }, 1000)
+  if (!departures.length)
+    container.innerHTML = "No departures for this station";
+  setTimeout(() => {
+    $("main").classList.remove("loading");
+  }, 1000);
+}
+
+// generates a departure element imperatively 
+function generateDeparture(dep) {
+  const container = createElement("div", "class=train-departure"),
+    left = createElement("div", "class=left"),
+    right = createElement("div", "class=right"),
+    service = createElement("h2", "class=location", dep.service),
+    scheduled = createElement("h3", "class=scheduled", dep.scheduledTime),
+    platformsText = createElement("p", null, "on platforms"),
+    platforms = createElement("h3", "class=platforms", dep.platform);
+
+  left.append(service);
+  right.append(scheduled);
+  if (dep.platform && dep.platform !== "-") right.append(platformsText, platforms);
+
+  container.append(left, right);
+  return container
 }

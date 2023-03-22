@@ -6,8 +6,9 @@
 }
 
 body {
-  height: 100svh;
   width: 100svw;
+  top: 0;
+  position: fixed;
   background: #0c0c20;
 }
 
@@ -18,19 +19,10 @@ main {
   backdrop-filter: blur(100px);
   /* Note: backdrop-filter has minimal browser support */
   padding: 30px;
-  cursor: none;
   max-width: 800px;
   min-width: 400px;
   margin: 90px auto;
   border-radius: 30px;
-
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.5s;
-}
-
-main.loading {
-  grid-template-rows: 1fr;
 }
 
 .departure-wrapper {
@@ -74,12 +66,12 @@ select {
 }
 
 select:hover {
-  box-shadow: 0 5px 4px rgba(0,0,0,0.2);
+  box-shadow: 0 5px 4px rgba(0, 0, 0, 0.2);
   translate: 0px -1px;
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-train-departure {
+.train-departure {
   display: flex;
   align-items: center;
   margin: 4px 0;
@@ -91,6 +83,95 @@ train-departure {
   animation: load 0.4s;
 }
 
+* {
+  margin: 0;
+}
+
+h2 {
+  opacity: 0.8;
+  font-weight: 600;
+}
+
+h3 {
+  font-weight: 500;
+  opacity: 0.7;
+  font-size: 24px;
+  margin: 0 4px;
+}
+
+.platforms {
+  min-width: 50px;
+  text-align: center;
+}
+
+p {
+  opacity: 0.5;
+  font-weight: 300;
+}
+
+.left,
+.right {
+  display: flex;
+  align-items: center;
+}
+
+* {
+  margin: 0;
+}
+
+h2 {
+  opacity: 0.8;
+  font-weight: 600;
+}
+
+h3 {
+  font-weight: 500;
+  opacity: 0.7;
+  font-size: 24px;
+  margin: 0 4px;
+}
+
+.platforms {
+  min-width: 50px;
+  text-align: center;
+}
+
+p {
+  opacity: 0.5;
+  font-weight: 300;
+}
+
+.left,
+.right {
+  display: flex;
+  align-items: center;
+}
+
 @keyframes load {
-  from {translate: 0 3px;opacity:0;}
+  from {
+    translate: 0 3px;
+    opacity: 0;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .right {
+    display: block;
+  }
+
+  .right p {
+    display: inline-block;
+  }
+
+  .right h3.scheduled {
+    text-align: right;
+  }
+
+  .right h3.platforms {
+    display: inline-block;
+  }
+
+  .train-departure {
+    padding: 13px;
+  }
 }
