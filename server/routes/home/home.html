@@ -1,7 +1,7 @@
 <style>
   * {
     color: white;
-    font-family: monospace;
+    font-family: "Courier New", monospace;
     margin: 0;
     box-sizing: border-box;
   }
@@ -16,9 +16,7 @@
     font-style: italic;
     display: block;
     opacity: 0.5;
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
+    margin: 20px;
     text-align: right;
   }
 
@@ -26,11 +24,11 @@
     opacity: 0.5;
   }
 
-  c {
-    color: deepskyblue;
-  }
   c2 {
-    color:coral;
+    color: rgb(152, 229, 255);
+  }
+  c {
+    color:rgb(0, 149, 255);
   }
 
   d,
@@ -43,10 +41,11 @@
     padding-left: 20px;
     border-left: 1px solid rgba(255, 255, 255, 0.3);
   }
+
+
 </style>
 
-<b>railway.wtf API</b>
-<br />
+<h3><b>railway.wtf API</b></h3>
 <c>GET</c> /departures/:station
 <ind>
   <d>fetch all departures for a given station ID</d>
@@ -87,5 +86,5 @@
 </ind>
 <foot>
   enjoy :3<br>
-  <d>railway.wtf</d>
+  <a href="https://railway.wtf"><d>railway.wtf</d></a>
 </foot>
