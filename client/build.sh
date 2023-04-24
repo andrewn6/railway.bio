@@ -1,0 +1,1 @@
+bunx rollup -f iife -i src/index.js -o src/build/bundle.js && bunx uglifyjs src/build/bundle.js -o src/build/bundle.min.js -c -m

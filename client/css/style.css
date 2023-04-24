@@ -23,11 +23,14 @@ main {
   min-width: 400px;
   margin: 90px auto;
   border-radius: 30px;
+  position: relative;
 }
 
 .departure-wrapper {
-  min-height: 0;
+  min-height: 30px;
+  max-width: 100%;
   overflow: hidden;
+  transition: 0.4s;
 }
 
 .blur {
@@ -77,12 +80,13 @@ select:hover {
   display: flex;
   align-items: center;
   margin: 4px 0;
+  max-width: 100%;
   justify-content: space-between;
   background: rgba(0, 0, 0, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 20px;
   padding: 20px;
-  animation: load 0.4s;
+  animation: load 0.4s both var(--i);
 }
 
 * {
@@ -148,9 +152,39 @@ p {
   display: flex;
   align-items: center;
 }
+/* 
+.loading {
+  border: 3px solid #94000000;
+  border-top: 3px solid #ffffff;
+  border-radius: 50%;
+  position: absolute;
+  right: 33px;
+  top: 38px;
+  transition: 0.3s;
+  opacity: 0;
+  width: 25px;
+  height: 25px;
+  animation: spin 0.5s cubic-bezier(.74, .33, .36, .72) infinite;
+}
+
+.loading.showing {
+  opacity: 1
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+} */
 
 @keyframes load {
-  from {
+
+  from,
+  20% {
     translate: 0 3px;
     opacity: 0;
   }
@@ -175,5 +209,20 @@ p {
 
   .train-departure {
     padding: 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: 0 !important;
+    transition: 0s !important;
+  }
+
+  .departure-wrapper {
+    transition: 0s !important;
+  }
+
+  .loading {
+    animation: spin 2s linear infinite !important;
   }
 }

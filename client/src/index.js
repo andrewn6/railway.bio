@@ -1,4 +1,6 @@
 import stations from "./stations.js";
+import { Animator } from "./Animator.js";
+import { createElement } from "./utils.js";
 
 const $ = document.querySelector.bind(document);
 
@@ -12,18 +14,6 @@ const fetchTrainDepartures = async (station) => {
   } catch (error) {
     console.error(error);
   }
-};
-const createElement = (tag, attrs, value) => {
-  // shorthand element function
-  let el = document.createElement(tag);
-  if (attrs)
-    attrs.split(";").forEach((attr) => {
-      if (!attr) return;
-      let vals = attr.split("=");
-      el.setAttribute(vals[0].trim(), vals[1].trim());
-    });
-  el.innerHTML = value || "";
-  return el;
 };
 
 // Populate select
@@ -46,41 +36,49 @@ select.oninput = async (e) => {
 
 loadStation("UN");
 
-async function loadStation(code) {
-  const container = $("#departures");
-  $("main").classList.add("loading");
-  const departures = await fetchTrainDepartures(code);
+const container = $(".departure-wrapper");
+const animator = new Animator(container, { padding: 8 });
+animator.setInner(createElement("div", "class=animator-inner"));
 
-  container.innerHTML = "";
+async function loadStation(code) {
+  const departures = await fetchTrainDepartures(code);
+  let departureFragment = new DocumentFragment();
+
+  animator.setInner(createElement("div", "class=animator-inner"));
 
   for (const [i, dep] of departures.entries()) {
-    let depel = generateDeparture(dep);
-    setTimeout(() => {
-      $("#departures").append(depel);
-    }, 100 * i);
+    let depel = generateDeparture(dep, i);
+    departureFragment.append(depel);
   }
 
+  animator.animateAppend(departureFragment);
+
   if (!departures.length)
-    container.innerHTML = "No departures for this station";
-  setTimeout(() => {
-    $("main").classList.remove("loading");
-  }, 1000);
+    animator.inner.innerHTML = "No departures for this station";
 }
 
-// generates a departure element imperatively 
-function generateDeparture(dep) {
-  const container = createElement("div", "class=train-departure"),
+// generates a departure element imperatively
+function generateDeparture(dep, i) {
+  const container = createElement(
+      "div",
+      `class=train-departure;style=--i:${i * 45}ms`
+    ),
     left = createElement("div", "class=left"),
     right = createElement("div", "class=right"),
     service = createElement("h2", "class=location", dep.service),
     scheduled = createElement("h3", "class=scheduled", dep.scheduledTime),
-    platformsText = createElement("p", null, "on platforms"),
+    platformsText = createElement(
+      "p",
+      null,
+      `on platform${dep.platform.split("&").length > 0 ? "s" : ""}`
+    ),
     platforms = createElement("h3", "class=platforms", dep.platform);
 
   left.append(service);
   right.append(scheduled);
-  if (dep.platform && dep.platform !== "-") right.append(platformsText, platforms);
+  if (dep.platform && dep.platform !== "-")
+    right.append(platformsText, platforms);
 
   container.append(left, right);
-  return container
+  return container;
 }
