@@ -7,7 +7,7 @@ const $ = document.querySelector.bind(document);
 const fetchTrainDepartures = async (station) => {
   setLoading(true);
   try {
-    const response = await fetch(`http://localhost:8080/departures/${station}`);
+    const response = await fetch(`https://api.railway.wtf/departures/${station}`);
     const data = await response.json();
     setLoading(false);
     return data;
