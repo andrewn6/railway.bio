@@ -185,7 +185,7 @@
         `https://api.railway.wtf/departures/${station}`
       );
       const data = await response.json();
-      return data.trainDepartures.items;
+      return data;
     } catch (error) {
       console.error(error);
     }
