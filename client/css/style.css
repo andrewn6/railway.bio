@@ -70,10 +70,15 @@ select {
   transition: 0.2s;
 }
 
-select:hover {
+select:not([disabled]):hover {
   box-shadow: 0 5px 4px rgba(0, 0, 0, 0.2);
   translate: 0px -1px;
   border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+select[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .train-departure {
@@ -152,8 +157,8 @@ p {
   display: flex;
   align-items: center;
 }
-/* 
-.loading {
+
+.loader {
   border: 3px solid #94000000;
   border-top: 3px solid #ffffff;
   border-radius: 50%;
@@ -164,11 +169,29 @@ p {
   opacity: 0;
   width: 25px;
   height: 25px;
+  display: inline-block;
   animation: spin 0.5s cubic-bezier(.74, .33, .36, .72) infinite;
 }
 
-.loading.showing {
+body.loading .loader,
+.loader.error {
   opacity: 1
+}
+
+.loader.error {
+  border: 0 !important;
+  animation: 0;
+  top: 45px;
+  width: fit-content;
+  height: fit-content;
+}
+
+.loader.error::after {
+  content: "Error :(";
+  white-space: nowrap;
+  color: red;
+  text-shadow: 0 0 30px red;
+  font-weight: bold;
 }
 
 @keyframes spin {
@@ -179,7 +202,7 @@ p {
   100% {
     transform: rotate(360deg);
   }
-} */
+}
 
 @keyframes load {
 

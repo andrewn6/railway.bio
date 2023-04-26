@@ -180,16 +180,28 @@
   const $ = document.querySelector.bind(document);
 
   const fetchTrainDepartures = async (station) => {
+    setLoading(true);
     try {
-      const response = await fetch(
-        `https://api.railway.wtf/departures/${station}`
-      );
+      const response = await fetch(`http://localhost:8080/departures/${station}`);
       const data = await response.json();
+      setLoading(false);
       return data;
     } catch (error) {
+      $(".loader").classList.add("error");
       console.error(error);
+      setLoading(false);
     }
   };
+
+  function setLoading(isLoading) {
+    if (isLoading) {
+      document.body.classList.add("loading");
+      $("#stationSelect").disabled = true;
+    } else {
+      document.body.classList.remove("loading");
+      $("#stationSelect").disabled = false;
+    }
+  }
 
   // Populate select
   let select = $("#stationSelect");
