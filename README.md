@@ -2,4 +2,4 @@
 
 better go train departure UI
 
-accessible @ https://railway.wtf
+accessible @ https://railway.bio
