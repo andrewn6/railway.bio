@@ -182,7 +182,7 @@
   const fetchTrainDepartures = async (station) => {
     setLoading(true);
     try {
-      const response = await fetch(`https://api.railway.wtf/departures/${station}`);
+      const response = await fetch(`https://api.railway.bio/departures/${station}`);
       const data = await response.json();
       setLoading(false);
       return data;
